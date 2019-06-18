@@ -1,0 +1,372 @@
+% This text is proprietary.
+% It's a part of presentation made by myself.
+% It may not used commercial.
+% The noncommercial use such as private and study is free
+% June 2019
+% Author: Vivek Kumar Singh
+% ITPC Kokata
+% www.bsnl.co.in/
+% 
+%
+\documentclass{beamer}
+\usepackage{beamerthemeshadow}
+\begin{document}
+\title{ Introduction to Shell Scripting } 
+\author{Vivek Kumar Singh}
+\date{\today}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%\begin{frame}\frametitle{ Table of Contents }\tableofcontents
+%\end{frame}
+
+\begin{frame}\frametitle{ Agenda }
+
+\begin{itemize}
+\item Defining and Using Shell Scripts
+\item Standard Input, Output and Error
+\item Uing variables and Operators in Shell Scripts
+\item How to use conditional statements and Loops
+%\item How to use Loops for repetitive Execution
+\item Using Functions to use a block of code whenever needed
+%\item Ho to redirect Standard Output and Error
+\item Examples and Use Cases
+\item Summary
+\end{itemize}
+
+\end{frame}
+
+\section{Introducton}
+\begin{frame}\frametitle{ Definition }
+\begin{block}{ Shell }
+Shell is a commandline interpreter. It  translates commands entered by the user and converts them into a language that is understood by kernel.
+\end{block}
+\pause
+\begin{block}{ Shell Script }
+Shell Script has list of commands in the order of execution.
+\end{block}
+\end{frame}
+
+\begin{frame}\frametitle{Creating and Executing Scripts}
+
+\begin{block}{ create a file (vi test.sh) }
+\#\!/bin/bash	\newline
+echo "Hello Everyone"
+\end{block}
+\pause
+\begin{block}{ make the fie executable }
+chmod +x test.sh 
+\end{block}
+\pause
+\begin{block}{ run the Script }
+./test.sh
+\end{block}
+
+\end{frame}
+
+\section{ Script Essentials}
+\subsection{ Variables and Operators }
+\begin{frame}\frametitle{ Variables }
+
+\begin{block}{ Types Of Variables }
+System Variables(Environment variables ) \newline
+User Defined Variables \newline
+Special Variables
+\end{block}
+\pause
+\begin{block}{ Special Variables (scriptname arg0 arg1 arg2 arg3}
+\$0, \$1, \$2 scriptname, first argument, second argument \newline
+%\$1  first argumrnt \newline
+%\$2  second arguent \newline
+\$\# number of arguments \newline
+\$?  Exit status of Last Cmmand
+\end{block}
+\pause
+\begin{block}{ Scope of Variable }
+Local and Global \newline
+by default variables are global
+\end{block}
+
+\end{frame}
+\begin{frame}\frametitle{ Variable Assignment and Use }
+
+\begin{block}{ Variable Assignment }
+var1=45 \newline
+var2=vivek
+\end{block}
+\pause
+\begin{block}{ Using Variables }
+echo "\$1" \newline
+echo "my name is \$var2"
+\end{block}
+\pause
+\begin{block}{ Taking User input }
+read name \newline
+echo "my name is \$name"
+\end{block}
+ 
+\end{frame}
+\begin{frame}\frametitle{ Basic Operators }
+
+\begin{block}{ Types Of Operators }
+Arithmetic Operators \newline
+Relational Operators \newline
+Boolean Operators \newline
+String Operators  \newline
+File Test Operators  \newline
+\end{block}
+\pause
+\begin{block}{ Arithmetic Operators }
+\#\!/bin/bash \newline
+a=10 ; b=20 \newline
+%b=20 \newline
+echo \`{}expr \$a + \$b\`{} \newline
+echo \`{}expr \$b / \$a\`{}
+\end{block}
+
+\end{frame}
+
+\begin{frame}\frametitle{ Standard Input Input, Output and Error }
+
+\begin{block}{ Standard Input }
+Taking input from keyboard 
+\end{block}
+\pause
+
+\begin{block}{ Standard Output }
+Output descriptor Mainly on attached display
+\end{block}
+\pause
+\begin{block}{ Standard Error }
+Default error output device 
+\end{block}
+
+\end{frame}
+
+\subsection{ Conditional Statements }
+\begin{frame}\frametitle{ Conditional Statements }
+
+\begin{block}{ if then else fi }
+If evaluates a condition, If a condition is true then if block code is executed. On false condition, else block code is executed, but its optional
+\end{block}
+\pause
+\begin{block}{ Case esac }
+It allows us to execute different set of instructions against different values of a varaible
+\end{block}
+\pause
+\begin{block}{ break and continue }
+The break statement terminates the current loop and passes program control to the command that follows the terminated loop. \newline \pause
+continue causes a jump to the next iteration of the loop, skipping all the remaining commands in that particular loop cycle
+\end{block}
+
+\end{frame}
+\subsection{ Shell Loops }
+\begin{frame}\frametitle{ Shell Loops }
+
+\begin{block}{ For Loop }
+executes commands for given set of values
+\end{block}
+\pause
+\begin{block}{ While Loop }
+executes commands as long as the given condition evaluates to true
+\end{block}
+\pause
+\begin{block}{ Until Loop }
+execute commands as long as the given condition evaluates to false
+\end{block}
+\pause
+\begin{block}{ Infinite Loop }
+A loop that runs forever
+\end{block}
+
+\end{frame}
+\subsection{ Functions }
+\begin{frame}\frametitle{ Functions }
+
+\begin{block}{ Definition }
+Functions are blocks of code which could be reused anywhere in the code.
+\end{block}
+\pause
+\begin{exampleblock}{ Example: Functions and Global Variable }
+\#!/bin/bsh \newline
+username=vivek \newline
+echo "Outside Function: $username" \newline
+func() \newline
+\{ \newline
+echo "Inside Function: $username" \newline
+\} \newline
+ffunc
+\end{exampleblock}
+
+\end{frame}
+\subsection{ Redirection }
+\begin{frame}\frametitle{ Redirecting Output and Error }
+
+\begin{block}{ append and overwrite type of redirects }
+echo Hello \textgreater file1.txt   \# used to overwrite text to the file\newline
+echo Hello \textgreater\textgreater file2.txt \# used to append text to the file
+\end{block}
+\pause
+\begin{block}{ Redirecting Standard Output }
+./scriptname.sh \textgreater logfile.txt
+\end{block}
+\pause
+\begin{block}{ Redirecting Standard Error }
+./scriptname.sh 2\textgreater logfile.txt
+\end{block}
+\pause
+\begin{block}{ Redirecting Both Standard Output and Error }
+./scriptname.sh \textgreater/tmp/out.txt 2\textgreater/tmp/error.log
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}\frametitle{unnumbered lists}
+%\begin{itemize}
+%\item Introduction to  \LaTeX 
+%\item Course 2
+%\item Termpapers and presentations with \LaTeX
+%\item Beamer class
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}\frametitle{lists with pause}
+%\begin{itemize}
+%\item Introduction to  \LaTeX \pause
+%\item Course 2 \pause
+%\item Termpapers and presentations with \LaTeX \pause
+%\item Beamer class
+%\end{itemize}
+%\end{frame}
+
+%\begin{frame}\frametitle{numbered lists with pause}
+%\begin{enumerate}
+%\item Introduction to  \LaTeX \pause
+%\item Course 2 \pause
+%\item Termpapers and presentations with \LaTeX \pause
+%\item Beamer class
+%\end{enumerate}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Examples and Use Cases}
+\subsection{Examples}
+
+\begin{frame}\frametitle{ Example }
+\begin{block}{Understanding Local Variables}
+Create a local variable and verify that its scope is local to its loop only.
+\end{block}
+\pause
+\begin{exampleblock}{ Solution Code }
+\#\!/bin/bash \newline
+username=vivek \newline
+echo "Outside Function: \$username" \newline
+func\(\) \{ \newline
+local username=vsingh \newline
+echo "Inside Function: \$username" \} \newline
+func \newline
+echo "Outside Function: \$username"
+\end{exampleblock}
+\end{frame}
+
+%%\begin{frame}\frametitle{ Example }
+%%\begin{block}{Title of the Example}
+%%Probem Statement
+%%\end{block}
+%%\pause
+%%\begin{exampleblock}{  Solution Code }
+%%Solutin Script
+%%\end{exampleblock}
+%%\end{frame}
+
+%%\begin{frame}\frametitle{ Example }
+%%\begin{block}{Title of the Example}
+%%Probem Statement
+%%\end{block}
+%%\pause
+%%\begin{exampleblock}{  Solution Code }
+%%Solutin Script
+%%\end{exampleblock}
+%%\end{frame}
+
+
+\subsection{Use Cases}
+\begin{frame}\frametitle{ Use Case : Matching User }
+
+\begin{block}{ Greeting for current user }
+Take username as input, If it matches with current user it should greet you, else it should say "Try Again"
+\end{block}
+\begin{exampleblock}{ Solution Code}
+\#\!/bin/bash  \newline
+echo "Please Enter username " ; read username \newline
+if [ "\$username" == "\$USER" ] \newline
+then  \newline
+echo "Hello \$username" \newline
+else \newline
+echo "Try Again" \newline
+fi
+
+\end{exampleblock}
+
+
+\end{frame}
+\begin{frame}\frametitle{ Use Case : Host Discovery }
+
+\begin{block}{ Host Discovery Alert}
+If destination server is not reachable, sen an Email
+\end{block}
+\begin{exampleblock}{ Solution Code( Run script as ./chkhost.sh host1 host2 host3) }
+\#\!bin/bash \newline
+for i in \$@ \newline
+do \newline
+ping -c 1 \$i \textgreater/dev/null \newline
+if [ \$? -ne 0 ] \newline
+then \newline
+echo "\$i is down" \textbar mail -s "Host Down" itpc.vivek@gmail.com \newline
+fi \newline
+done 
+\end{exampleblock}
+\end{frame}
+
+\section{ Summary }
+\subsection{ Summary }
+\begin{frame}\frametitle{ Summary}
+
+\begin{block}{ We Discussed }
+How to write small scripts \newline
+How to use variables and inputs \newline
+How to use commandline arguments in script \newline
+How to use control statements and Loops \newline
+How to use functins \newline
+How to use Redirecion
+\end{block}
+\pause
+\begin{block}{ Scope }
+Further scripts could be automated using crontab
+\end{block}
+
+\end{frame}
+
+
+%\begin{frame}\frametitle{ Thanks and Suggestions }
+\subsection{ Thanks }
+
+\begin{frame}
+
+\begin{block}{       Thank You  }
+%thank you
+\end{block}
+\begin{block}{    Questions and Suggestions }
+%           Questions and Suggestions
+\end{block}
+
+
+\end{frame}
+
+
+
+\end{document}
+
+
